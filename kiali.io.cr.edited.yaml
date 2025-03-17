@@ -1,0 +1,266 @@
+apiVersion: kiali.io/v1alpha1
+kind: Kiali
+metadata:
+  annotations:
+    ansible.sdk.operatorframework.io/verbosity: '1'
+    meta.helm.sh/release-name: kiali-operator
+    meta.helm.sh/release-namespace: aks-istio-system
+  creationTimestamp: '2024-10-01T12:45:55Z'
+  finalizers:
+    - kiali.io/finalizer
+  generation: 1
+  labels:
+    app: kiali-operator
+    app.kubernetes.io/instance: kiali-operator
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kiali-operator
+    app.kubernetes.io/part-of: kiali-operator
+    app.kubernetes.io/version: v1.89.7
+    helm.sh/chart: kiali-operator-1.89.7
+    version: v1.89.7
+  managedFields:
+    - apiVersion: kiali.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:finalizers:
+            .: {}
+            v:"kiali.io/finalizer": {}
+      manager: ansible-operator
+      operation: Update
+      time: '2024-10-01T12:45:55Z'
+    - apiVersion: kiali.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:ansible.sdk.operatorframework.io/verbosity: {}
+            f:meta.helm.sh/release-name: {}
+            f:meta.helm.sh/release-namespace: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:app.kubernetes.io/instance: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:app.kubernetes.io/name: {}
+            f:app.kubernetes.io/part-of: {}
+            f:app.kubernetes.io/version: {}
+            f:helm.sh/chart: {}
+            f:version: {}
+        f:spec:
+          .: {}
+          f:deployment:
+            .: {}
+            f:accessible_namespaces: {}
+      manager: helm
+      operation: Update
+      time: '2024-10-01T12:45:55Z'
+    - apiVersion: kiali.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:deployment:
+            .: {}
+            f:accessibleNamespaces: {}
+            f:instanceName: {}
+            f:namespace: {}
+          f:environment:
+            .: {}
+            f:isKubernetes: {}
+            f:kubernetesVersion: {}
+            f:operatorVersion: {}
+          f:progress:
+            .: {}
+            f:duration: {}
+            f:message: {}
+          f:specVersion: {}
+      manager: OpenAPI-Generator
+      operation: Update
+      subresource: status
+      time: '2024-10-16T07:19:03Z'
+    - apiVersion: kiali.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          .: {}
+          f:conditions: {}
+      manager: ansible-operator
+      operation: Update
+      subresource: status
+      time: '2024-10-16T07:19:04Z'
+  name: kiali
+  namespace: aks-istio-system
+  uid: f2aa3fde-69c1-438d-8c8c-4f902d1780ef
+spec:
+  deployment:
+    accessible_namespaces:
+      - '**'
+      
+  external_services:
+    custom_dashboards:
+      discovery_auto_threshold: 10
+      discovery_enabled: auto
+      enabled: true
+      is_core: false
+      namespace_label: ''
+      prometheus:
+        auth:
+          ca_file: ''
+          insecure_skip_verify: false
+          password: ''
+          token: ''
+          type: bearer
+          use_kiali_token: false
+          username: ''
+        cache_duration: 7
+        cache_enabled: true
+        cache_expiration: 300
+        custom_headers: {}
+        health_check_url: 'http://172.214.59.63'
+        is_core: true
+        query_scope: {}
+        thanos_proxy:
+          enabled: false
+          retention_period: 7d
+          scrape_interval: 30s
+        url: 'http://azuremonitor-query.aad-auth-proxy-ns'
+    grafana:
+      auth:
+        ca_file: ''
+        insecure_skip_verify: false
+        password: ''
+        token: ''
+        type: none
+        use_kiali_token: false
+        username: ''
+      dashboards:
+      - name: Istio Service Dashboard
+        variables:
+          namespace: var-namespace
+          service: var-service
+      - name: Istio Workload Dashboard
+        variables:
+          namespace: var-namespace
+          workload: var-workload
+      - name: Istio Mesh Dashboard
+      - name: Istio Control Plane Dashboard
+      - name: Istio Performance Dashboard
+      - name: Istio Wasm Extension Dashboard
+      enabled: false
+      health_check_url: ''
+      in_cluster_url: http://grafana.aks-istio-system:3000
+      is_core: false
+      url: ''
+    istio:
+      component_status:
+        components:
+        - app_label: istiod
+          is_core: true
+          is_proxy: false
+          namespace: 'aks-istio-system'
+        - app_label: istio-ingressgateway
+          is_core: true
+          is_proxy: true
+          namespace: 'aks-istio-ingress'
+        - app_label: istio-egressgateway
+          is_core: false
+          is_proxy: true
+          namespace: 'aks-istio-egress'
+        enabled: true
+      config_map_name: istio-asm-1-23
+      envoy_admin_local_port: 15000
+      gateway_api_classes: []
+      istio_api_enabled: true
+      istio_identity_domain: svc.cluster.local
+      istio_injection_annotation: sidecar.istio.io/inject
+      istio_sidecar_annotation: sidecar.istio.io/status
+      istio_sidecar_injector_config_map_name: istio-sidecar-injector
+      istiod_deployment_name: istio-asm-1-23
+      istiod_pod_monitoring_port: 15014
+      root_namespace: aks-istio-system
+      url_service_version: http://istiod.aks-istio-system:15014/version
+    prometheus:
+      auth:
+        ca_file: ''
+        insecure_skip_verify: false
+        password: ''
+        token: ''
+        type: bearer
+        use_kiali_token: false
+        username: ''
+      cache_duration: 7
+      cache_enabled: true
+      cache_expiration: 300
+      custom_headers: {}
+      health_check_url: 'http://172.214.59.63'
+      is_core: true
+      query_scope: {}
+      thanos_proxy:
+        enabled: false
+        retention_period: 7d
+        scrape_interval: 30s
+      url: 'http://azuremonitor-query.aad-auth-proxy-ns'
+    tracing:
+      auth:
+        ca_file: ''
+        insecure_skip_verify: false
+        password: ''
+        token: ''
+        type: none
+        use_kiali_token: false
+        username: ''
+      custom_headers: {}
+      enabled: false
+      grpc_port: 9095
+      health_check_url: ''
+      in_cluster_url: http://tracing.aks-istio-system:16685/jaeger
+      is_core: false
+      namespace_selector: true
+      provider: jaeger
+      query_scope: {}
+      query_timeout: 5
+      tempo_config:
+        datasource_uid: ''
+        org_id: ''
+      url: ''
+      use_grpc: true
+      whitelist_istio_system:
+      - jaeger-query
+      - istio-ingressgateway    
+      
+status:
+  conditions:
+    - lastTransitionTime: '2024-10-01T12:46:35Z'
+      message: ''
+      reason: ''
+      status: 'False'
+      type: Failure
+    - ansibleResult:
+        changed: 10
+        completion: '2024-10-16T07:19:03.703168'
+        failures: 0
+        ok: 73
+        skipped: 55
+      lastTransitionTime: '2024-10-01T12:45:55Z'
+      message: Awaiting next reconciliation
+      reason: Successful
+      status: 'True'
+      type: Running
+    - lastTransitionTime: '2024-10-16T07:19:04Z'
+      message: Last reconciliation succeeded
+      reason: Successful
+      status: 'True'
+      type: Successful
+  deployment:
+    accessibleNamespaces: '**'
+    instanceName: kiali
+    namespace: aks-istio-system
+  environment:
+    isKubernetes: true
+    kubernetesVersion: 1.29.6
+    operatorVersion: v1.89.7
+  progress:
+    duration: '0:00:27'
+    message: 6. Finished all resource creation
+  specVersion: default
